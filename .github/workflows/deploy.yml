@@ -30,6 +30,6 @@ jobs:
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
-          app-name: urlshortener-e8edd0gqapb6b2h9
+          app-name: urlshortener
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: publish
