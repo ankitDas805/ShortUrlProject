@@ -26,16 +26,15 @@ public class ShortUrlService
         }
         else
         {
-            string shortenUrl = configuration.GetSection("Baseurl").Value + "/"+shortUrl;
             await collection.InsertOneAsync(new ShortUrl
             {
                 longUrl = longUrl,
                 clickCount = 0,
                 createdAt = DateTime.Now,
-                shortUrl = shortenUrl
+                shortUrl = shortUrl
             });
 
-            return shortenUrl;
+            return configuration.GetSection("BaseUrl").Value + "/"+shortUrl;
         }
 
     }
