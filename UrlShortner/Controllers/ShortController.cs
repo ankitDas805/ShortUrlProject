@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/[controller]")]
 public class ShortController : ControllerBase
 {
     private readonly ShortUrlService shortUrlService;
@@ -14,8 +13,8 @@ public class ShortController : ControllerBase
     [HttpPost("Create")]
     public async Task<IActionResult> Create(string longUrl)
     {
-        await shortUrlService.Insert(longUrl,Guid.NewGuid().ToString()[..4]);
-        return Ok();
+       var shortUrl =  await shortUrlService.Insert(longUrl,Guid.NewGuid().ToString()[..4]);
+        return Ok(shortUrl);
     }
 
     [HttpGet("{shortUrl}")]
@@ -24,6 +23,5 @@ public class ShortController : ControllerBase
         var response =  await shortUrlService.GetLongUrl(shortUrl);
         return Redirect(response);
     }
-
     
 }

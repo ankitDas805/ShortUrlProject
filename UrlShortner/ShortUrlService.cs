@@ -1,42 +1,57 @@
+using Azure.Messaging.ServiceBus;
 using MongoDB.Driver;
 
 public class ShortUrlService
 {
     private readonly IMongoCollection<ShortUrl> collection;
+    private readonly IConfiguration configuration;
 
-    public ShortUrlService(IMongoClient client,IConfiguration configuration)
+    public ShortUrlService(IMongoClient client, IConfiguration configuration)
     {
+        this.configuration = configuration;
         var dbName = configuration["MongoDBSettings:DatabaseName"];
         var dataBase = client.GetDatabase(dbName);
 
         collection = dataBase.GetCollection<ShortUrl>("urlmapping");
     }
 
-    public async Task<bool> Insert(string longUrl,string shortUrl)
+    public async Task<string> Insert(string longUrl, string shortUrl)
     {
-        await collection.InsertOneAsync(new ShortUrl
-        {
-            longUrl = longUrl,
-            clickCount = 0,
-            createdAt = DateTime.Now,
-            shortUrl = shortUrl
-        });
 
-        return true;
+        var check = await collection.Find(x => x.longUrl == longUrl).FirstOrDefaultAsync();
+
+        if (check != null)
+        {
+            return check.longUrl;
+        }
+        else
+        {
+            string shortenUrl = configuration.GetSection("Baseurl").Value + "/"+shortUrl;
+            await collection.InsertOneAsync(new ShortUrl
+            {
+                longUrl = longUrl,
+                clickCount = 0,
+                createdAt = DateTime.Now,
+                shortUrl = shortenUrl
+            });
+
+            return shortenUrl;
+        }
+
     }
 
     public async Task<string> GetLongUrl(string shortUrl)
     {
-        var response =  await collection.Find(x=>x.shortUrl == shortUrl).FirstOrDefaultAsync();
+        var response = await collection.Find(x => x.shortUrl == shortUrl).FirstOrDefaultAsync();
 
-        if(response != null)
+        if (response != null)
         {
-            var filter = Builders<ShortUrl>.Filter.Where(x=>x.shortUrl == shortUrl);
+            var filter = Builders<ShortUrl>.Filter.Where(x => x.shortUrl == shortUrl);
 
-            var update = Builders<ShortUrl>.Update.Inc(x=>x.clickCount,1);
-            var newClickCount =  response.clickCount += 1;
+            var update = Builders<ShortUrl>.Update.Inc(x => x.clickCount, 1);
+            var newClickCount = response.clickCount += 1;
 
-            await collection.UpdateOneAsync(filter,update);
+            await collection.UpdateOneAsync(filter, update);
             return response.longUrl;
         }
         else

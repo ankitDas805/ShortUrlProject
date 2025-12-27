@@ -62,3 +62,10 @@
 /Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/Snappier.dll
 /Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/ZstdSharp.dll
 /Users/ankitdas/Documents/ShortUrlProject/UrlShortner/obj/Debug/net8.0/UrlShortner.sourcelink.json
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/Azure.Core.dll
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/Azure.Core.Amqp.dll
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/Azure.Messaging.ServiceBus.dll
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/Microsoft.Azure.Amqp.dll
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/System.ClientModel.dll
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/System.Memory.Data.dll
