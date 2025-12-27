@@ -23,6 +23,8 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+app.MapGet("/",() => "Short Url is running");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

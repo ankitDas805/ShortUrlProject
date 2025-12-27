@@ -61,3 +61,4 @@
 /Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/SharpCompress.dll
 /Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/Snappier.dll
 /Users/ankitdas/Documents/ShortUrlProject/UrlShortner/bin/Debug/net8.0/ZstdSharp.dll
+/Users/ankitdas/Documents/ShortUrlProject/UrlShortner/obj/Debug/net8.0/UrlShortner.sourcelink.json
